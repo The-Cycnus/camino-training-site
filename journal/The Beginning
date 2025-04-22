@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>April 21, 2025 – The Journey Begins</title>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet">
+  <style>
+    body {
+      font-family: 'Outfit', sans-serif;
+      background-color: #fff;
+      margin: 0;
+      padding: 2em;
+      max-width: 700px;
+      margin: auto;
+      line-height: 1.6;
+    }
+    h1 {
+      color: #2c7a7b;
+    }
+    a {
+      color: #2c7a7b;
+    }
+  </style>
+</head>
+<body>
+  <h1>April 21, 2025 – The Journey Begins</h1>
+  <p><strong>Website Created</strong></p>
+  <p>The Camino de Santiago. The very name evokes images of dusty trails, ancient churches, and personal discovery across the Spanish landscape. For months, the "French Way" has been calling to me, a whisper growing into a clear goal. But embarking on a 790km trek requires more than just sturdy boots; it demands meticulous planning, dedicated training, and a way to capture the experience.</p>
+  <p>That's where the second, unexpected pilgrimage began: learning to code.</p>
+  <p>Why combine these two seemingly disparate challenges? Honestly, it started practically. I wanted a central place to document my training progress, research gear, map out stages, and share my reflections. A simple blog felt insufficient, and I craved a more personalized, structured space. Building my own website seemed like the perfect solution. The only problem? I barely knew the difference between HTML and a hyperlink.</p>
+  <p>So, here I am, navigating two paths simultaneously. One involves increasing my daily step count, breaking in hiking boots, and researching the best albergues. The other involves staring intently at lines of code, wrestling with CSS syntax, and celebrating small victories like centering a <div> or getting a navigation menu to finally work.</p>
+ <p>This website, the one I plan to painstakingly building line by line, will become more than just a planning tool. It will be a tangible representation of this dual journey. It will host my training logs, gear reviews, reflections on the why behind this pilgrimage, and eventually, updates from the trail itself. Every element added, every bug fixed, will be like a step taken, not just in my coding education, but in my preparation for the Way of St. James.</p>
+    
+  <p>Buen Camino!</p>
+  <a href="index.html">← Back to Journal</a>
+</body>
+</html>
