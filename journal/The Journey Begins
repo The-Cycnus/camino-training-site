@@ -24,7 +24,7 @@
 </head>
 <body>
   <h1>Welcome</h1>
-  <<p>The Camino de Santiago. The very name evokes images of dusty trails, ancient churches, and personal discovery across the Spanish landscape. For months, the "French Way" has been calling to me, a whisper growing into a clear goal. But embarking on a 790km trek requires more than just sturdy boots; it demands meticulous planning, dedicated training, and a way to capture the experience.</p>
+  <p>The Camino de Santiago. The very name evokes images of dusty trails, ancient churches, and personal discovery across the Spanish landscape. For months, the "French Way" has been calling to me, a whisper growing into a clear goal. But embarking on a 790km trek requires more than just sturdy boots; it demands meticulous planning, dedicated training, and a way to capture the experience.</p>
 
 <p>That's where the second, unexpected pilgrimage began: learning to code.</p>
 
