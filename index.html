@@ -122,45 +122,6 @@
       </ul>
     </section>
 
-  <section>
-    <h2>Camino Frances Route Map</h2>
-    <div id="map"></div>
-  </section>
-
-    <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
-  <script>
-    const map = L.map('map').setView([42.816, -1.644], 6);
-
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors'
-    }).addTo(map);
-
-    const stops = [
-      { name: 'Saint-Jean-Pied-de-Port', coords: [43.163, -1.237] },
-      { name: 'Roncesvalles', coords: [43.009, -1.317] },
-      { name: 'Pamplona', coords: [42.817, -1.645] },
-      { name: 'Logroño', coords: [42.466, -2.445] },
-      { name: 'Burgos', coords: [42.343, -3.696] },
-      { name: 'Sahagún', coords: [42.370, -5.032] },
-      { name: 'León', coords: [42.598, -5.567] },
-      { name: 'Astorga', coords: [42.458, -6.055] },
-      { name: 'Ponferrada', coords: [42.546, -6.598] },
-      { name: 'O Cebreiro', coords: [42.709, -7.041] },
-      { name: 'Sarria', coords: [42.780, -7.409] },
-      { name: 'Portomarín', coords: [42.810, -7.615] },
-      { name: 'Palas de Rei', coords: [42.873, -7.723] },
-      { name: 'Arzúa', coords: [42.933, -8.157] },
-      { name: 'Santiago de Compostela', coords: [42.880, -8.545] }
-    ];
-
-    stops.forEach(stop => {
-      L.marker(stop.coords).addTo(map)
-        .bindPopup(`<b>${stop.name}</b>`);
-    });
-
-    const latlngs = stops.map(stop => stop.coords);
-    L.polyline(latlngs, { color: 'green' }).addTo(map);
-  </script>
 
     
     <section id="journal-preview">
