@@ -1,0 +1,164 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Camino Journal</title>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700&family=Playfair+Display:wght@700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #fafafa;
+      color: #333;
+      max-width: 800px;
+      margin: 0 auto;
+      padding: 2rem;
+      line-height: 1.7;
+    }
+
+    header {
+      background-image: url('https://images.unsplash.com/photo-1570042225833-c7b89eae7c7b');
+      background-size: cover;
+      background-position: center;
+      height: 300px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
+      margin-bottom: 2rem;
+    }
+
+    header h1 {
+      font-family: 'Playfair Display', serif;
+      font-size: 3rem;
+    }
+
+    nav {
+      display: flex;
+      justify-content: center;
+      gap: 2rem;
+      margin-bottom: 2rem;
+    }
+
+    nav a {
+      text-decoration: none;
+      color: #333;
+      font-weight: bold;
+    }
+
+    .post-preview {
+      margin-bottom: 2rem;
+      border-bottom: 1px solid #ddd;
+      padding-bottom: 1rem;
+    }
+
+    .post-preview h2 {
+      font-family: 'Playfair Display', serif;
+      font-size: 1.75rem;
+      margin-bottom: 0.5rem;
+    }
+
+    .post-preview p {
+      margin-top: 0.5rem;
+    }
+
+    #map {
+      height: 500px;
+      margin: 2rem 0;
+      border: 1px solid #ccc;
+      border-radius: 8px;
+    }
+  </style>
+</head>
+<body>
+  <header>
+    <h1>My Camino Journal</h1>
+  </header>
+
+  <nav>
+    <a href="index.html">Home</a>
+    <a href="blog.html">Journal</a>
+    <a href="about.html">About</a>
+  </nav>
+
+  <section>
+    <h2>Camino Frances Route Map</h2>
+    <div id="map"></div>
+  </section>
+
+  <section>
+    <div class="post-preview">
+      <h2><a href="posts/day-1.html">Day 1 – Starting the French Way</a></h2>
+      <p>Excitement, nerves, and the first 25 km of an 800 km journey through northern Spain...</p>
+    </div>
+
+    <div class="post-preview">
+      <h2><a href="posts/training.html">Training Journal</a></h2>
+      <p>How I'm preparing physically and mentally for the Camino de Santiago – including gear, long walks, and mindset.</p>
+    </div>
+  </section>
+
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <script>
+    const map = L.map('map').setView([42.816, -1.644], 6);
+
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
+
+    const stops = [
+      { name: 'Saint-Jean-Pied-de-Port', coords: [43.163, -1.237] },
+      { name: 'Roncesvalles', coords: [43.009, -1.317] },
+      { name: 'Zubiri', coords: [42.904, -1.467] },
+      { name: 'Pamplona', coords: [42.817, -1.645] },
+      { name: 'Puente la Reina', coords: [42.672, -1.817] },
+      { name: 'Estella', coords: [42.671, -2.037] },
+      { name: 'Los Arcos', coords: [42.576, -2.195] },
+      { name: 'Logroño', coords: [42.466, -2.445] },
+      { name: 'Nájera', coords: [42.418, -2.734] },
+      { name: 'Santo Domingo de la Calzada', coords: [42.440, -2.953] },
+      { name: 'Belorado', coords: [42.417, -3.186] },
+      { name: 'San Juan de Ortega', coords: [42.367, -3.510] },
+      { name: 'Burgos', coords: [42.343, -3.696] },
+      { name: 'Hornillos del Camino', coords: [42.323, -3.899] },
+      { name: 'Castrojeriz', coords: [42.287, -4.258] },
+      { name: 'Frómista', coords: [42.266, -4.413] },
+      { name: 'Carrión de los Condes', coords: [42.337, -4.605] },
+      { name: 'Terradillos de los Templarios', coords: [42.415, -4.983] },
+      { name: 'Sahagún', coords: [42.370, -5.032] },
+      { name: 'El Burgo Ranero', coords: [42.449, -5.329] },
+      { name: 'Mansilla de las Mulas', coords: [42.528, -5.415] },
+      { name: 'León', coords: [42.598, -5.567] },
+      { name: 'Hospital de Órbigo', coords: [42.468, -5.893] },
+      { name: 'Astorga', coords: [42.458, -6.055] },
+      { name: 'Rabanal del Camino', coords: [42.486, -6.368] },
+      { name: 'Ponferrada', coords: [42.546, -6.598] },
+      { name: 'Villafranca del Bierzo', coords: [42.603, -6.811] },
+      { name: 'O Cebreiro', coords: [42.709, -7.041] },
+      { name: 'Triacastela', coords: [42.735, -7.241] },
+      { name: 'Sarria', coords: [42.780, -7.409] },
+      { name: 'Portomarín', coords: [42.810, -7.615] },
+      { name: 'Palas de Rei', coords: [42.873, -7.723] },
+      { name: 'Arzúa', coords: [42.933, -8.157] },
+      { name: 'O Pedrouzo', coords: [42.906, -8.415] },
+      { name: 'Santiago de Compostela', coords: [42.880, -8.545] }
+    ];
+
+    stops.forEach(stop => {
+      L.marker(stop.coords).addTo(map)
+        .bindPopup(`<b>${stop.name}</b>`);
+    });
+
+    const latlngs = stops.map(stop => stop.coords);
+    L.polyline(latlngs, { color: 'green' }).addTo(map);
+  </script>
+</body>
+</html>
