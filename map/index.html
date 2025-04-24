@@ -27,27 +27,38 @@
       background-image: url('https://images.unsplash.com/photo-1641218356058-1a8988a5135b?q=80&w=2070&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D');
       background-size: cover;
       background-position: center;
+      height: 400px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       color: white;
-      text-align: center;
-      padding: 4em 1em;
+      text-shadow: 0 2px 6px rgba(0,0,0,0.6);
     }
 
     header h1 {
       font-family: 'Playfair Display', serif;
       font-size: 3rem;
+       text-align: center;
+      padding: 0 1rem;
     }
 
     nav {
-      display: flex;
+      isplay: flex;
       justify-content: center;
-      gap: 2rem;
-      margin-bottom: 2rem;
+      gap: 1rem;
+      background-color: #fff;
+      padding: 1rem;
+      box-shadow: 0 2px 5px rgba(0,0,0,0.1);
     }
 
     nav a {
       text-decoration: none;
-      color: #333;
+      color: #fff;
       font-weight: bold;
+      background-color: #007a3d;
+      padding: 0.75rem 1.5rem;
+      border-radius: 5px;
+      transition: background-color 0.3s;
     }
 
     .post-preview {
