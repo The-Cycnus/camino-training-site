@@ -120,55 +120,74 @@
     </section>
 
     <section id="planning">
-      <h2>Route Planning</h2>
-      <p>
-        My route begins in <strong>St. Jean Pied de Port</strong> and finishes almost 800 km later in <strong>Santiago de Compostela</strong>. I plan to average ~25 km per day, with built-in rest days.  The following will be a rough outline of what the plan looks like and will eventually include details of each stage.
-      </p>
-      <ul>
-        <li>Day 1: St. Jean to Roncesvalles</li>
-        <li>Day 2: Roncesvalles to Zubiri</li>
-        <li>Day 3: Zubiri to Pamplona</li>
-        <li>... (more stages coming soon!)</li>
-      </ul>
+  <h2>Route Planning</h2>
+  <p>
+    My route begins in <strong>St. Jean Pied de Port</strong> and finishes almost 800 km later in <strong>Santiago de Compostela</strong>. I plan to average ~25 km per day, with built-in rest days. The following will be a rough outline of what the plan looks like and will eventually include details of each stage.
+  </p>
+  <ul>
+    <li>Day 1: St. Jean to Roncesvalles</li>
+    <li>Day 2: Roncesvalles to Zubiri</li>
+    <li>Day 3: Zubiri to Pamplona</li>
+    <li>... (more stages coming soon!)</li>
+  </ul>
   <div id="map"></div>
-  <div style="margin-top: 2em;">
-      
-    </div>
-      <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
+  <div style="margin-top: 2em;"></div>
+
+  <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
   <script>
-    const map = L.map('map').setView([42.816, -1.644], 6);
+    const map = L.map('map').setView([42.8782, -8.5448], 6);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-    const stops = [
-      { name: 'Saint-Jean-Pied-de-Port', coords: [43.163, -1.237] },
-      { name: 'Roncesvalles', coords: [43.009, -1.317] },
-      { name: 'Pamplona', coords: [42.817, -1.645] },
-      { name: 'Logroño', coords: [42.466, -2.445] },
-      { name: 'Burgos', coords: [42.343, -3.696] },
-      { name: 'Sahagún', coords: [42.370, -5.032] },
-      { name: 'León', coords: [42.598, -5.567] },
-      { name: 'Astorga', coords: [42.458, -6.055] },
-      { name: 'Ponferrada', coords: [42.546, -6.598] },
-      { name: 'O Cebreiro', coords: [42.709, -7.041] },
-      { name: 'Sarria', coords: [42.780, -7.409] },
-      { name: 'Portomarín', coords: [42.810, -7.615] },
-      { name: 'Palas de Rei', coords: [42.873, -7.723] },
-      { name: 'Arzúa', coords: [42.933, -8.157] },
-      { name: 'Santiago de Compostela', coords: [42.880, -8.545] }
+    const caminoPoints = [
+      { name: "St. Jean Pied de Port", coords: [43.163, -1.237] },
+      { name: "Roncesvalles", coords: [43.0096, -1.3232] },
+      { name: "Zubiri", coords: [42.9106, -1.5097] },
+      { name: "Pamplona", coords: [42.8169, -1.6432] },
+      { name: "Puente la Reina", coords: [42.6716, -1.8179] },
+      { name: "Estella", coords: [42.6718, -2.0326] },
+      { name: "Los Arcos", coords: [42.5577, -2.1862] },
+      { name: "Logroño", coords: [42.4668, -2.4456] },
+      { name: "Nájera", coords: [42.4176, -2.7315] },
+      { name: "Santo Domingo de la Calzada", coords: [42.4411, -2.9544] },
+      { name: "Belorado", coords: [42.4171, -3.1928] },
+      { name: "San Juan de Ortega", coords: [42.3654, -3.4344] },
+      { name: "Burgos", coords: [42.3439, -3.6969] },
+      { name: "Hornillos del Camino", coords: [42.3285, -4.0841] },
+      { name: "Castrojeriz", coords: [42.2875, -4.2646] },
+      { name: "Frómista", coords: [42.2702, -4.4168] },
+      { name: "Carrión de los Condes", coords: [42.3387, -4.6076] },
+      { name: "Terradillos de los Templarios", coords: [42.3855, -4.9679] },
+      { name: "El Burgo Ranero", coords: [42.4428, -5.2704] },
+      { name: "León", coords: [42.5987, -5.5671] },
+      { name: "Villar de Mazarife", coords: [42.5339, -5.7811] },
+      { name: "Astorga", coords: [42.4577, -6.0592] },
+      { name: "Rabanal del Camino", coords: [42.4812, -6.3471] },
+      { name: "Ponferrada", coords: [42.5466, -6.5981] },
+      { name: "Villafranca del Bierzo", coords: [42.6042, -6.8112] },
+      { name: "O Cebreiro", coords: [42.7095, -7.0408] },
+      { name: "Triacastela", coords: [42.7364, -7.2365] },
+      { name: "Sarria", coords: [42.7793, -7.4154] },
+      { name: "Portomarín", coords: [42.8066, -7.6152] },
+      { name: "Palas de Rei", coords: [42.8739, -7.8706] },
+      { name: "Arzúa", coords: [42.9279, -8.1579] },
+      { name: "O Pedrouzo", coords: [42.9058, -8.3631] },
+      { name: "Santiago de Compostela", coords: [42.8782, -8.5448] }
     ];
 
-    stops.forEach(stop => {
-      L.marker(stop.coords).addTo(map)
-        .bindPopup(`<b>${stop.name}</b>`);
+    const latlngs = [];
+
+    caminoPoints.forEach(point => {
+      latlngs.push(point.coords);
+      L.marker(point.coords).addTo(map)
+        .bindPopup(`<strong>${point.name}</strong>`);
     });
 
-    const latlngs = stops.map(stop => stop.coords);
-    L.polyline(latlngs, { color: 'green' }).addTo(map);
+    L.polyline(latlngs, { color: 'blue', weight: 4 }).addTo(map);
   </script>
-    </section>
+</section>
 
 
     
