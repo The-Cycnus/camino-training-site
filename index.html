@@ -95,150 +95,95 @@
 
     <main>
     <section id="planning">
-      <h2>Route Planning</h2>
-      <p>Click a day below to zoom to that part of the Camino map!</p>
-      <button id="fit-route" style="
-      background-color: #2c7a7b;
-      color: white;
-      border: none;
-        padding: 0.75em 1.5em;
-      border-radius: 12px;
-      font-size: 1em;
-      cursor: pointer;
-      margin-bottom: 1em;
-        box-shadow: 0 4px 12px rgba(0,0,0,0.1);
-    ">
-      See Entire Route
-    </button>
-      
-      <ul id="stages-list">
-        <!-- Stage links will be injected here by JS -->
-      </ul>
-      <div id="map"></div>
-    </section>
-  </main>
+  <h2>Route Planning</h2>
+  <p>
+    My route begins in <strong>St. Jean Pied de Port</strong> and finishes almost 800 km later in <strong>Santiago de Compostela</strong>. I plan to average ~25 km per day, with built-in rest days. Click on each day to see the section of the route!
+  </p>
+
+  <ul id="itinerary"></ul>
+
+  <div id="map"></div>
+  <div style="margin-top: 1em;">
+    <button id="resetView" style="background-color: #2c7a7b; color: white; padding: 0.5em 1em; border: none; border-radius: 8px; font-weight: bold;">Reset Map View</button>
+  </div>
 
   <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
   <script>
-    document.addEventListener('DOMContentLoaded', function () {
-      const stops = {
-  'Saint-Jean-Pied-de-Port': [43.163, -1.237],
-  'Roncesvalles': [43.009, -1.317],
-  'Zubiri': [42.916, -1.442],
-  'Pamplona': [42.817, -1.644],
-  'Puente la Reina': [42.670, -1.815],
-  'Estella': [42.666, -2.033],
-  'Los Arcos': [42.558, -2.196],
-  'Logroño': [42.466, -2.445],
-  'Nájera': [42.417, -2.733],
-  'Santo Domingo de la Calzada': [42.441, -2.954],
-  'Belorado': [42.419, -3.191],
-  'San Juan de Ortega': [42.376, -3.516],
-  'Burgos': [42.343, -3.696],
-  'Hornillos del Camino': [42.357, -3.892],
-  'Castrojeriz': [42.287, -4.262],
-  'Frómista': [42.268, -4.413],
-  'Carrión de los Condes': [42.339, -4.604],
-  'Terradillos de los Templarios': [42.432, -5.041],
-  'Sahagún': [42.370, -5.032],
-  'El Burgo Ranero': [42.440, -5.261],
-  'Mansilla de las Mulas': [42.517, -5.431],
-  'León': [42.598, -5.567],
-  'Villadangos del Páramo': [42.572, -5.773],
-  'Astorga': [42.458, -6.055],
-  'Rabanal del Camino': [42.487, -6.334],
-  'Ponferrada': [42.546, -6.598],
-  'Villafranca del Bierzo': [42.610, -6.812],
-  'O Cebreiro': [42.709, -7.041],
-  'Triacastela': [42.728, -7.267],
-  'Sarria': [42.780, -7.409],
-  'Portomarín': [42.810, -7.615],
-  'Palas de Rei': [42.873, -7.723],
-  'Arzúa': [42.933, -8.157],
-  'O Pedrouzo': [42.908, -8.336],
-  'Santiago de Compostela': [42.880, -8.545]
-};
+    const map = L.map('map').setView([42.816, -1.644], 6);
 
-const stages = [ 
-  { day: 1, start: 'Saint-Jean-Pied-de-Port', end: 'Roncesvalles', distance: 25 },
-  { day: 2, start: 'Roncesvalles', end: 'Zubiri', distance: 22 },
-  { day: 3, start: 'Zubiri', end: 'Pamplona', distance: 21 },
-  { day: 4, start: 'Pamplona', end: 'Puente la Reina', distance: 24 },
-  { day: 5, start: 'Puente la Reina', end: 'Estella', distance: 22 },
-  { day: 6, start: 'Estella', end: 'Los Arcos', distance: 21 },
-  { day: 7, start: 'Los Arcos', end: 'Logroño', distance: 28 },
-  { day: 8, start: 'Logroño', end: 'Nájera', distance: 29 },
-  { day: 9, start: 'Nájera', end: 'Santo Domingo de la Calzada', distance: 22 },
-  { day: 10, start: 'Santo Domingo de la Calzada', end: 'Belorado', distance: 23 },
-  { day: 11, start: 'Belorado', end: 'San Juan de Ortega', distance: 24 },
-  { day: 12, start: 'San Juan de Ortega', end: 'Burgos', distance: 26 },
-  { day: 13, start: 'Burgos', end: 'Hornillos del Camino', distance: 20 },
-  { day: 14, start: 'Hornillos del Camino', end: 'Castrojeriz', distance: 19 },
-  { day: 15, start: 'Castrojeriz', end: 'Frómista', distance: 24 },
-  { day: 16, start: 'Frómista', end: 'Carrión de los Condes', distance: 20 },
-  { day: 17, start: 'Carrión de los Condes', end: 'Terradillos de los Templarios', distance: 26 },
-  { day: 18, start: 'Terradillos de los Templarios', end: 'Sahagún', distance: 17 },
-  { day: 19, start: 'Sahagún', end: 'El Burgo Ranero', distance: 18 },
-  { day: 20, start: 'El Burgo Ranero', end: 'Mansilla de las Mulas', distance: 19 },
-  { day: 21, start: 'Mansilla de las Mulas', end: 'León', distance: 18 },
-  { day: 22, start: 'León', end: 'Villadangos del Páramo', distance: 20 },
-  { day: 23, start: 'Villadangos del Páramo', end: 'Astorga', distance: 27 },
-  { day: 24, start: 'Astorga', end: 'Rabanal del Camino', distance: 21 },
-  { day: 25, start: 'Rabanal del Camino', end: 'Ponferrada', distance: 32 },
-  { day: 26, start: 'Ponferrada', end: 'Villafranca del Bierzo', distance: 23 },
-  { day: 27, start: 'Villafranca del Bierzo', end: 'O Cebreiro', distance: 28 },
-  { day: 28, start: 'O Cebreiro', end: 'Triacastela', distance: 21 },
-  { day: 29, start: 'Triacastela', end: 'Sarria', distance: 18 },
-  { day: 30, start: 'Sarria', end: 'Portomarín', distance: 22 },
-  { day: 31, start: 'Portomarín', end: 'Palas de Rei', distance: 25 },
-  { day: 32, start: 'Palas de Rei', end: 'Arzúa', distance: 29 },
-  { day: 33, start: 'Arzúa', end: 'O Pedrouzo', distance: 19 },
-  { day: 34, start: 'O Pedrouzo', end: 'Santiago de Compostela', distance: 20 }
-];
+    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+      attribution: '© OpenStreetMap contributors'
+    }).addTo(map);
 
-const map = L.map('map').setView([42.816, -1.644], 7);
+    const stops = [
+      { name: 'Saint-Jean-Pied-de-Port', coords: [43.163, -1.237] },
+      { name: 'Roncesvalles', coords: [43.009, -1.317] },
+      { name: 'Zubiri', coords: [42.911, -1.468] },
+      { name: 'Pamplona', coords: [42.817, -1.645] },
+      { name: 'Puente la Reina', coords: [42.672, -1.817] },
+      { name: 'Estella', coords: [42.671, -2.034] },
+      { name: 'Los Arcos', coords: [42.575, -2.198] },
+      { name: 'Logroño', coords: [42.466, -2.445] },
+      { name: 'Nájera', coords: [42.418, -2.733] },
+      { name: 'Santo Domingo de la Calzada', coords: [42.440, -2.954] },
+      { name: 'Belorado', coords: [42.417, -3.193] },
+      { name: 'San Juan de Ortega', coords: [42.369, -3.511] },
+      { name: 'Burgos', coords: [42.343, -3.696] },
+      { name: 'Hornillos del Camino', coords: [42.356, -4.075] },
+      { name: 'Castrojeriz', coords: [42.287, -4.257] },
+      { name: 'Frómista', coords: [42.267, -4.415] },
+      { name: 'Carrión de los Condes', coords: [42.337, -4.604] },
+      { name: 'Terradillos de los Templarios', coords: [42.433, -4.996] },
+      { name: 'Sahagún', coords: [42.370, -5.032] },
+      { name: 'El Burgo Ranero', coords: [42.449, -5.330] },
+      { name: 'Mansilla de las Mulas', coords: [42.515, -5.413] },
+      { name: 'León', coords: [42.598, -5.567] },
+      { name: 'Hospital de Órbigo', coords: [42.454, -5.866] },
+      { name: 'Astorga', coords: [42.458, -6.055] },
+      { name: 'Rabanal del Camino', coords: [42.482, -6.296] },
+      { name: 'El Acebo', coords: [42.536, -6.476] },
+      { name: 'Ponferrada', coords: [42.546, -6.598] },
+      { name: 'Villafranca del Bierzo', coords: [42.603, -6.811] },
+      { name: 'O Cebreiro', coords: [42.709, -7.041] },
+      { name: 'Triacastela', coords: [42.725, -7.240] },
+      { name: 'Sarria', coords: [42.780, -7.409] },
+      { name: 'Portomarín', coords: [42.810, -7.615] },
+      { name: 'Palas de Rei', coords: [42.873, -7.723] },
+      { name: 'Arzúa', coords: [42.933, -8.157] },
+      { name: 'Pedrouzo', coords: [42.905, -8.351] },
+      { name: 'Santiago de Compostela', coords: [42.880, -8.545] }
+    ];
 
-L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-  attribution: '© OpenStreetMap contributors'
-}).addTo(map);
+    const distances = [
+      24.2, 20.3, 20.0, 20.7, 22.5, 22.4, 22.3, 23.5, 21.0, 21.2, 21.5, 21.4, 21.5, 22.0, 20.8, 20.7, 21.5, 22.5, 21.0, 22.2, 22.4, 23.1, 22.3, 21.7, 20.6, 22.0, 23.6, 20.0, 23.0, 20.7, 20.0
+    ];
 
-// Markers
-Object.entries(stops).forEach(([name, coords]) => {
-  L.marker(coords).addTo(map).bindPopup(`<b>${name}</b>`);
-});
+    const latlngs = stops.map(stop => stop.coords);
+    L.polyline(latlngs, { color: 'green' }).addTo(map);
 
-// Routes
-let routeSegments = [];
-stages.forEach(stage => {
-  const segment = L.polyline([stops[stage.start], stops[stage.end]], { color: 'green' }).addTo(map);
-  routeSegments.push(segment);
-});
+    stops.forEach(stop => {
+      L.marker(stop.coords).addTo(map)
+        .bindPopup(`<b>${stop.name}</b>`);
+    });
 
-// Stages List
-const stagesList = document.getElementById('stages-list');
+    const itineraryList = document.getElementById('itinerary');
 
-stages.forEach((stage, index) => {
-  const li = document.createElement('li');
-  li.innerHTML = `<strong>Day ${stage.day}:</strong> ${stage.start} ➔ ${stage.end} (${stage.distance} km)`;
-  li.style.cursor = 'pointer';
+    for (let i = 0; i < stops.length - 1; i++) {
+      const li = document.createElement('li');
+      li.innerHTML = `<strong>Day ${i + 1}:</strong> ${stops[i].name} ➔ ${stops[i + 1].name} (~${distances[i]} km)`;
+      li.style.cursor = 'pointer';
+      li.addEventListener('click', () => {
+        const bounds = L.latLngBounds([stops[i].coords, stops[i + 1].coords]);
+        map.fitBounds(bounds.pad(0.3));
+      });
+      itineraryList.appendChild(li);
+    }
 
-  li.addEventListener('click', () => {
-    map.setView(stops[stage.start], 13);
-
-    routeSegments.forEach(seg => seg.setStyle({ color: 'green', weight: 4 }));
-    routeSegments[index].setStyle({ color: 'blue', weight: 7, opacity: 0.7 });
-  });
-
-  stagesList.appendChild(li);
-});
-
-// Button to Fit Whole Camino
-const fitButton = document.getElementById('fit-map');
-fitButton.addEventListener('click', () => {
-  const bounds = L.latLngBounds(Object.values(stops));
-  map.fitBounds(bounds);
-  routeSegments.forEach(seg => seg.setStyle({ color: 'green', weight: 4 }));
-});
+    document.getElementById('resetView').addEventListener('click', () => {
+      map.setView([42.816, -1.644], 6);
+    });
+  </script>
+</section>
 
 
 
