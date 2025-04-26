@@ -5,12 +5,8 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Coding the Camino</title>
   <link rel="stylesheet" href="https://unpkg.com/leaflet@1.9.3/dist/leaflet.css" />
-
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;600&display=swap" rel="stylesheet" />
   <style>
-     * {
-      box-sizing: border-box;
-    }
     body {
       font-family: 'Outfit', sans-serif;
       background-color: #f2f3f7;
@@ -31,11 +27,6 @@
       font-size: 3.5em;
       text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.5);
     }
-    header p {
-      font-size: 2.3em;
-      margin-top: 0.5em;
-      text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.4);
-    }
     main {
       max-width: 900px;
       margin: 2em auto;
@@ -48,49 +39,32 @@
       border-radius: 16px;
       box-shadow: 0 8px 24px rgba(0,0,0,0.05);
     }
-    h2 {
-      color: #2c7a7b;
-      margin-top: 0;
-    }
-    footer {
-      background-color: #2c7a7b;
-      color: white;
-      text-align: center;
-      padding: 1em;
-    }
-    ul {
-      padding-left: 1.2em;
-    }
-    iframe {
+    #map {
       width: 100%;
       height: 500px;
-      border: none;
       border-radius: 16px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+      margin-top: 1em;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.1);
     }
-    @media (max-width: 600px) {
-      header h1 {
-        font-size: 2em;
-      }
-      section {
-        padding: 1.2em;
-      }
+    ul {
+      list-style: none;
+      padding-left: 0;
     }
-#map {
-  width: 100%;
-  height: 400px;
-  margin-top: 1.5em;
-  border: 1px solid #ccc;
-  border-radius: 12px;
-  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
-}
-  
+    ul li {
+      margin-bottom: 10px;
+    }
+    a.stage-link {
+      color: #2c7a7b;
+      text-decoration: none;
+      font-weight: bold;
+    }
   </style>
 </head>
+
 <body>
   <header>
     <h1>Coding the Camino:</h1>
-   <p>My Journey Learning to Code While Planning a Pilgrimage</p>
+    <p>My Journey Learning to Code While Planning a Pilgrimage</p>
   </header>
 
   <main>
@@ -119,96 +93,92 @@
       </ul>
     </section>
 
+    <main>
     <section id="planning">
-  <h2>Route Planning</h2>
-  <p>
-    My route begins in <strong>St. Jean Pied de Port</strong> and finishes almost 800 km later in <strong>Santiago de Compostela</strong>. I plan to average ~25 km per day, with built-in rest days. The following is a detailed outline of the stages I plan to walk.
-  </p>
-
-  <ul id="itinerary">
-    <li data-coords="43.163,-1.237">Day 1: St. Jean Pied de Port → Roncesvalles (25 km)</li>
-    <li data-coords="43.009,-1.317">Day 2: Roncesvalles → Zubiri (22 km)</li>
-    <li data-coords="42.838,-1.603">Day 3: Zubiri → Pamplona (20 km)</li>
-    <li data-coords="42.671,-1.817">Day 4: Pamplona → Puente la Reina (24 km)</li>
-    <li data-coords="42.671,-2.031">Day 5: Puente la Reina → Estella (22 km)</li>
-    <li data-coords="42.671,-2.187">Day 6: Estella → Los Arcos (21 km)</li>
-    <li data-coords="42.558,-2.376">Day 7: Los Arcos → Logroño (27 km)</li>
-    <li data-coords="42.465,-2.447">Day 8: Logroño → Nájera (29 km)</li>
-    <li data-coords="42.416,-2.733">Day 9: Nájera → Santo Domingo de la Calzada (21 km)</li>
-    <li data-coords="42.440,-3.048">Day 10: Santo Domingo de la Calzada → Belorado (22 km)</li>
-    <li data-coords="42.421,-3.365">Day 11: Belorado → San Juan de Ortega (24 km)</li>
-    <li data-coords="42.354,-3.703">Day 12: San Juan de Ortega → Burgos (26 km)</li>
-    <li data-coords="42.354,-3.703">Day 13: Rest Day in Burgos</li>
-    <li data-coords="42.266,-3.883">Day 14: Burgos → Hornillos del Camino (21 km)</li>
-    <li data-coords="42.272,-4.114">Day 15: Hornillos del Camino → Castrojeriz (19 km)</li>
-    <li data-coords="42.283,-4.324">Day 16: Castrojeriz → Frómista (25 km)</li>
-    <li data-coords="42.272,-4.419">Day 17: Frómista → Carrión de los Condes (20 km)</li>
-    <li data-coords="42.338,-4.838">Day 18: Carrión de los Condes → Terradillos de los Templarios (26 km)</li>
-    <li data-coords="42.432,-5.188">Day 19: Terradillos de los Templarios → El Burgo Ranero (27 km)</li>
-    <li data-coords="42.598,-5.567">Day 20: El Burgo Ranero → León (23 km)</li>
-    <li data-coords="42.598,-5.567">Day 21: Rest Day in León</li>
-    <li data-coords="42.593,-5.735">Day 22: León → Villar de Mazarife (21 km)</li>
-    <li data-coords="42.457,-6.055">Day 23: Villar de Mazarife → Astorga (31 km)</li>
-    <li data-coords="42.458,-6.222">Day 24: Astorga → Rabanal del Camino (21 km)</li>
-    <li data-coords="42.544,-6.598">Day 25: Rabanal del Camino → Ponferrada (32 km)</li>
-    <li data-coords="42.601,-6.814">Day 26: Ponferrada → Villafranca del Bierzo (23 km)</li>
-    <li data-coords="42.709,-7.041">Day 27: Villafranca del Bierzo → O Cebreiro (28 km)</li>
-    <li data-coords="42.733,-7.265">Day 28: O Cebreiro → Triacastela (21 km)</li>
-    <li data-coords="42.770,-7.416">Day 29: Triacastela → Sarria (18 km)</li>
-    <li data-coords="42.780,-7.409">Day 30: Sarria → Portomarín (22 km)</li>
-    <li data-coords="42.873,-7.723">Day 31: Portomarín → Palas de Rei (25 km)</li>
-    <li data-coords="42.933,-8.157">Day 32: Palas de Rei → Arzúa (29 km)</li>
-    <li data-coords="42.905,-8.318">Day 33: Arzúa → O Pedrouzo (20 km)</li>
-    <li data-coords="42.880,-8.545">Day 34: O Pedrouzo → Santiago de Compostela (19 km)</li>
-  </ul>
-
-  <div id="map"></div>
-  <div style="margin-top: 2em;"></div>
+      <h2>Route Planning</h2>
+      <p>Click a day below to zoom to that part of the Camino map!</p>
+      <ul id="stages-list">
+        <!-- Stage links will be injected here by JS -->
+      </ul>
+      <div id="map"></div>
+    </section>
+  </main>
 
   <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
   <script>
-    const map = L.map('map').setView([42.816, -1.644], 6);
+    document.addEventListener('DOMContentLoaded', function () {
+      const stops = [
+        { day: 1, name: 'Saint-Jean-Pied-de-Port', coords: [43.163, -1.237] },
+        { day: 2, name: 'Roncesvalles', coords: [43.009, -1.317] },
+        { day: 3, name: 'Zubiri', coords: [42.911, -1.508] },
+        { day: 4, name: 'Pamplona', coords: [42.817, -1.645] },
+        { day: 5, name: 'Puente la Reina', coords: [42.671, -1.817] },
+        { day: 6, name: 'Estella', coords: [42.671, -2.034] },
+        { day: 7, name: 'Los Arcos', coords: [42.584, -2.182] },
+        { day: 8, name: 'Logroño', coords: [42.466, -2.445] },
+        { day: 9, name: 'Nájera', coords: [42.417, -2.733] },
+        { day: 10, name: 'Santo Domingo de la Calzada', coords: [42.440, -2.954] },
+        { day: 11, name: 'Belorado', coords: [42.420, -3.195] },
+        { day: 12, name: 'San Juan de Ortega', coords: [42.365, -3.466] },
+        { day: 13, name: 'Burgos', coords: [42.343, -3.696] },
+        { day: 14, name: 'Hornillos del Camino', coords: [42.357, -4.072] },
+        { day: 15, name: 'Castrojeriz', coords: [42.284, -4.259] },
+        { day: 16, name: 'Frómista', coords: [42.272, -4.415] },
+        { day: 17, name: 'Carrión de los Condes', coords: [42.338, -4.605] },
+        { day: 18, name: 'Terradillos de los Templarios', coords: [42.409, -4.999] },
+        { day: 19, name: 'Sahagún', coords: [42.370, -5.032] },
+        { day: 20, name: 'El Burgo Ranero', coords: [42.450, -5.311] },
+        { day: 21, name: 'León', coords: [42.598, -5.567] },
+        { day: 22, name: 'Villadangos del Páramo', coords: [42.560, -5.785] },
+        { day: 23, name: 'Astorga', coords: [42.458, -6.055] },
+        { day: 24, name: 'Rabanal del Camino', coords: [42.473, -6.325] },
+        { day: 25, name: 'Ponferrada', coords: [42.546, -6.598] },
+        { day: 26, name: 'Villafranca del Bierzo', coords: [42.606, -6.812] },
+        { day: 27, name: 'O Cebreiro', coords: [42.709, -7.041] },
+        { day: 28, name: 'Triacastela', coords: [42.735, -7.250] },
+        { day: 29, name: 'Sarria', coords: [42.780, -7.409] },
+        { day: 30, name: 'Portomarín', coords: [42.810, -7.615] },
+        { day: 31, name: 'Palas de Rei', coords: [42.873, -7.723] },
+        { day: 32, name: 'Arzúa', coords: [42.933, -8.157] },
+        { day: 33, name: 'O Pedrouzo', coords: [42.916, -8.290] },
+        { day: 34, name: 'Santiago de Compostela', coords: [42.880, -8.545] }
+      ];
 
-    L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
-      attribution: '© OpenStreetMap contributors'
-    }).addTo(map);
+      const map = L.map('map').setView([42.816, -4.5], 7);
+      L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
+        attribution: '© OpenStreetMap contributors'
+      }).addTo(map);
 
-    const stops = [
-      { name: 'Saint-Jean-Pied-de-Port', coords: [43.163, -1.237] },
-      { name: 'Roncesvalles', coords: [43.009, -1.317] },
-      { name: 'Pamplona', coords: [42.817, -1.645] },
-      { name: 'Logroño', coords: [42.466, -2.445] },
-      { name: 'Burgos', coords: [42.343, -3.696] },
-      { name: 'Sahagún', coords: [42.370, -5.032] },
-      { name: 'León', coords: [42.598, -5.567] },
-      { name: 'Astorga', coords: [42.458, -6.055] },
-      { name: 'Ponferrada', coords: [42.546, -6.598] },
-      { name: 'O Cebreiro', coords: [42.709, -7.041] },
-      { name: 'Sarria', coords: [42.780, -7.409] },
-      { name: 'Portomarín', coords: [42.810, -7.615] },
-      { name: 'Palas de Rei', coords: [42.873, -7.723] },
-      { name: 'Arzúa', coords: [42.933, -8.157] },
-      { name: 'Santiago de Compostela', coords: [42.880, -8.545] }
-    ];
+      // Add markers and path
+      const latlngs = [];
+      stops.forEach(stop => {
+        const marker = L.marker(stop.coords).addTo(map)
+          .bindPopup(`<b>Day ${stop.day}: ${stop.name}</b>`);
+        latlngs.push(stop.coords);
+      });
+      L.polyline(latlngs, { color: 'green' }).addTo(map);
 
-    stops.forEach(stop => {
-      L.marker(stop.coords).addTo(map)
-        .bindPopup(`<b>${stop.name}</b>`);
-    });
-
-    const latlngs = stops.map(stop => stop.coords);
-    L.polyline(latlngs, { color: 'green' }).addTo(map);
-
-    // Make list items clickable to zoom the map
-    const itineraryItems = document.querySelectorAll('#itinerary li');
-    itineraryItems.forEach(item => {
-      item.addEventListener('click', () => {
-        const coords = item.getAttribute('data-coords').split(',').map(Number);
-        map.setView(coords, 12);
+      // Generate clickable list
+      const stagesList = document.getElementById('stages-list');
+      stops.forEach(stop => {
+        const li = document.createElement('li');
+        const link = document.createElement('a');
+        link.href = "#";
+        link.className = "stage-link";
+        link.textContent = `Day ${stop.day}: ${stop.name}`;
+        link.addEventListener('click', function (e) {
+          e.preventDefault();
+          map.setView(stop.coords, 13);
+          L.popup()
+            .setLatLng(stop.coords)
+            .setContent(`<b>Day ${stop.day}: ${stop.name}</b>`)
+            .openOn(map);
+        });
+        li.appendChild(link);
+        stagesList.appendChild(li);
       });
     });
   </script>
-</section>
 
 
 
