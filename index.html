@@ -122,72 +122,94 @@
     <section id="planning">
   <h2>Route Planning</h2>
   <p>
-    My route begins in <strong>St. Jean Pied de Port</strong> and finishes almost 800 km later in <strong>Santiago de Compostela</strong>. I plan to average ~25 km per day, with built-in rest days. The following will be a rough outline of what the plan looks like and will eventually include details of each stage.
+    My route begins in <strong>St. Jean Pied de Port</strong> and finishes almost 800 km later in <strong>Santiago de Compostela</strong>. I plan to average ~25 km per day, with built-in rest days. The following is a detailed outline of the stages I plan to walk.
   </p>
-  <ul>
-    <li>Day 1: St. Jean to Roncesvalles</li>
-    <li>Day 2: Roncesvalles to Zubiri</li>
-    <li>Day 3: Zubiri to Pamplona</li>
-    <li>... (more stages coming soon!)</li>
+
+  <ul id="itinerary">
+    <li data-coords="43.163,-1.237">Day 1: St. Jean Pied de Port → Roncesvalles (25 km)</li>
+    <li data-coords="43.009,-1.317">Day 2: Roncesvalles → Zubiri (22 km)</li>
+    <li data-coords="42.838,-1.603">Day 3: Zubiri → Pamplona (20 km)</li>
+    <li data-coords="42.671,-1.817">Day 4: Pamplona → Puente la Reina (24 km)</li>
+    <li data-coords="42.671,-2.031">Day 5: Puente la Reina → Estella (22 km)</li>
+    <li data-coords="42.671,-2.187">Day 6: Estella → Los Arcos (21 km)</li>
+    <li data-coords="42.558,-2.376">Day 7: Los Arcos → Logroño (27 km)</li>
+    <li data-coords="42.465,-2.447">Day 8: Logroño → Nájera (29 km)</li>
+    <li data-coords="42.416,-2.733">Day 9: Nájera → Santo Domingo de la Calzada (21 km)</li>
+    <li data-coords="42.440,-3.048">Day 10: Santo Domingo de la Calzada → Belorado (22 km)</li>
+    <li data-coords="42.421,-3.365">Day 11: Belorado → San Juan de Ortega (24 km)</li>
+    <li data-coords="42.354,-3.703">Day 12: San Juan de Ortega → Burgos (26 km)</li>
+    <li data-coords="42.354,-3.703">Day 13: Rest Day in Burgos</li>
+    <li data-coords="42.266,-3.883">Day 14: Burgos → Hornillos del Camino (21 km)</li>
+    <li data-coords="42.272,-4.114">Day 15: Hornillos del Camino → Castrojeriz (19 km)</li>
+    <li data-coords="42.283,-4.324">Day 16: Castrojeriz → Frómista (25 km)</li>
+    <li data-coords="42.272,-4.419">Day 17: Frómista → Carrión de los Condes (20 km)</li>
+    <li data-coords="42.338,-4.838">Day 18: Carrión de los Condes → Terradillos de los Templarios (26 km)</li>
+    <li data-coords="42.432,-5.188">Day 19: Terradillos de los Templarios → El Burgo Ranero (27 km)</li>
+    <li data-coords="42.598,-5.567">Day 20: El Burgo Ranero → León (23 km)</li>
+    <li data-coords="42.598,-5.567">Day 21: Rest Day in León</li>
+    <li data-coords="42.593,-5.735">Day 22: León → Villar de Mazarife (21 km)</li>
+    <li data-coords="42.457,-6.055">Day 23: Villar de Mazarife → Astorga (31 km)</li>
+    <li data-coords="42.458,-6.222">Day 24: Astorga → Rabanal del Camino (21 km)</li>
+    <li data-coords="42.544,-6.598">Day 25: Rabanal del Camino → Ponferrada (32 km)</li>
+    <li data-coords="42.601,-6.814">Day 26: Ponferrada → Villafranca del Bierzo (23 km)</li>
+    <li data-coords="42.709,-7.041">Day 27: Villafranca del Bierzo → O Cebreiro (28 km)</li>
+    <li data-coords="42.733,-7.265">Day 28: O Cebreiro → Triacastela (21 km)</li>
+    <li data-coords="42.770,-7.416">Day 29: Triacastela → Sarria (18 km)</li>
+    <li data-coords="42.780,-7.409">Day 30: Sarria → Portomarín (22 km)</li>
+    <li data-coords="42.873,-7.723">Day 31: Portomarín → Palas de Rei (25 km)</li>
+    <li data-coords="42.933,-8.157">Day 32: Palas de Rei → Arzúa (29 km)</li>
+    <li data-coords="42.905,-8.318">Day 33: Arzúa → O Pedrouzo (20 km)</li>
+    <li data-coords="42.880,-8.545">Day 34: O Pedrouzo → Santiago de Compostela (19 km)</li>
   </ul>
+
   <div id="map"></div>
   <div style="margin-top: 2em;"></div>
 
   <script src="https://unpkg.com/leaflet@1.9.3/dist/leaflet.js"></script>
   <script>
-    const map = L.map('map').setView([42.8782, -8.5448], 6);
+    const map = L.map('map').setView([42.816, -1.644], 6);
 
     L.tileLayer('https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', {
       attribution: '© OpenStreetMap contributors'
     }).addTo(map);
 
-    const caminoPoints = [
-      { name: "St. Jean Pied de Port", coords: [43.163, -1.237] },
-      { name: "Roncesvalles", coords: [43.0096, -1.3232] },
-      { name: "Zubiri", coords: [42.9106, -1.5097] },
-      { name: "Pamplona", coords: [42.8169, -1.6432] },
-      { name: "Puente la Reina", coords: [42.6716, -1.8179] },
-      { name: "Estella", coords: [42.6718, -2.0326] },
-      { name: "Los Arcos", coords: [42.5577, -2.1862] },
-      { name: "Logroño", coords: [42.4668, -2.4456] },
-      { name: "Nájera", coords: [42.4176, -2.7315] },
-      { name: "Santo Domingo de la Calzada", coords: [42.4411, -2.9544] },
-      { name: "Belorado", coords: [42.4171, -3.1928] },
-      { name: "San Juan de Ortega", coords: [42.3654, -3.4344] },
-      { name: "Burgos", coords: [42.3439, -3.6969] },
-      { name: "Hornillos del Camino", coords: [42.3285, -4.0841] },
-      { name: "Castrojeriz", coords: [42.2875, -4.2646] },
-      { name: "Frómista", coords: [42.2702, -4.4168] },
-      { name: "Carrión de los Condes", coords: [42.3387, -4.6076] },
-      { name: "Terradillos de los Templarios", coords: [42.3855, -4.9679] },
-      { name: "El Burgo Ranero", coords: [42.4428, -5.2704] },
-      { name: "León", coords: [42.5987, -5.5671] },
-      { name: "Villar de Mazarife", coords: [42.5339, -5.7811] },
-      { name: "Astorga", coords: [42.4577, -6.0592] },
-      { name: "Rabanal del Camino", coords: [42.4812, -6.3471] },
-      { name: "Ponferrada", coords: [42.5466, -6.5981] },
-      { name: "Villafranca del Bierzo", coords: [42.6042, -6.8112] },
-      { name: "O Cebreiro", coords: [42.7095, -7.0408] },
-      { name: "Triacastela", coords: [42.7364, -7.2365] },
-      { name: "Sarria", coords: [42.7793, -7.4154] },
-      { name: "Portomarín", coords: [42.8066, -7.6152] },
-      { name: "Palas de Rei", coords: [42.8739, -7.8706] },
-      { name: "Arzúa", coords: [42.9279, -8.1579] },
-      { name: "O Pedrouzo", coords: [42.9058, -8.3631] },
-      { name: "Santiago de Compostela", coords: [42.8782, -8.5448] }
+    const stops = [
+      { name: 'Saint-Jean-Pied-de-Port', coords: [43.163, -1.237] },
+      { name: 'Roncesvalles', coords: [43.009, -1.317] },
+      { name: 'Pamplona', coords: [42.817, -1.645] },
+      { name: 'Logroño', coords: [42.466, -2.445] },
+      { name: 'Burgos', coords: [42.343, -3.696] },
+      { name: 'Sahagún', coords: [42.370, -5.032] },
+      { name: 'León', coords: [42.598, -5.567] },
+      { name: 'Astorga', coords: [42.458, -6.055] },
+      { name: 'Ponferrada', coords: [42.546, -6.598] },
+      { name: 'O Cebreiro', coords: [42.709, -7.041] },
+      { name: 'Sarria', coords: [42.780, -7.409] },
+      { name: 'Portomarín', coords: [42.810, -7.615] },
+      { name: 'Palas de Rei', coords: [42.873, -7.723] },
+      { name: 'Arzúa', coords: [42.933, -8.157] },
+      { name: 'Santiago de Compostela', coords: [42.880, -8.545] }
     ];
 
-    const latlngs = [];
-
-    caminoPoints.forEach(point => {
-      latlngs.push(point.coords);
-      L.marker(point.coords).addTo(map)
-        .bindPopup(`<strong>${point.name}</strong>`);
+    stops.forEach(stop => {
+      L.marker(stop.coords).addTo(map)
+        .bindPopup(`<b>${stop.name}</b>`);
     });
 
-    L.polyline(latlngs, { color: 'blue', weight: 4 }).addTo(map);
+    const latlngs = stops.map(stop => stop.coords);
+    L.polyline(latlngs, { color: 'green' }).addTo(map);
+
+    // Make list items clickable to zoom the map
+    const itineraryItems = document.querySelectorAll('#itinerary li');
+    itineraryItems.forEach(item => {
+      item.addEventListener('click', () => {
+        const coords = item.getAttribute('data-coords').split(',').map(Number);
+        map.setView(coords, 12);
+      });
+    });
   </script>
 </section>
+
 
 
     
