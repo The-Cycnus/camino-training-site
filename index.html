@@ -97,6 +97,59 @@
         <li><strong>April 21:</strong> Completed the the stairs portion of the Coquitlam Crunch which includes approx. 450 stairs up and 480 stairs down.  Three circuits completed but felt the struggle in the lungs. </li>
         <li><strong>April 18:</strong> 13 km walk through the city, no blisters!</li>
       </ul>
+      <section id="habit-tracker">
+    <h2>🧭 Habit Tracker</h2>
+
+    <div class="habit-block" data-habit="walk">
+      <div class="label">🚶 Walk 5km+ (5x/week)</div>
+      <div class="tracker"></div>
+    </div>
+
+    <div class="habit-block" data-habit="elevation">
+      <div class="label">⛰️ Elevation training (2x/week)</div>
+      <div class="tracker"></div>
+    </div>
+
+    <div class="habit-block" data-habit="rest">
+      <div class="label">🧘 Rest & Stretch (1x/week)</div>
+      <div class="tracker"></div>
+    </div>
+
+    <div class="habit-block" data-habit="research">
+      <div class="label">📚 Research for the Camino (3x/week)</div>
+      <div class="tracker"></div>
+    </div>
+  </section>
+
+  <script>
+    const DAYS = 28; // 4 weeks
+
+    document.querySelectorAll('.habit-block').forEach((block, i) => {
+      const tracker = block.querySelector('.tracker');
+      const habitKey = block.dataset.habit;
+
+      for (let d = 0; d < DAYS; d++) {
+        const dayDiv = document.createElement('div');
+        dayDiv.classList.add('day');
+
+        const storageKey = `habit-${habitKey}-day-${d}`;
+        if (localStorage.getItem(storageKey) === 'done') {
+          dayDiv.classList.add('done');
+        }
+
+        dayDiv.addEventListener('click', () => {
+          dayDiv.classList.toggle('done');
+          if (dayDiv.classList.contains('done')) {
+            localStorage.setItem(storageKey, 'done');
+          } else {
+            localStorage.removeItem(storageKey);
+          }
+        });
+
+        tracker.appendChild(dayDiv);
+      }
+    });
+  </script>
     </section>
 
     <main>
