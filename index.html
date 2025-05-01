@@ -66,21 +66,22 @@
     }
     .tracker {
       display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 0.5rem;
+      grid-template-columns: repeat(30, 1fr);
+      gap: 2px;
       margin-top: 1rem;
     }
     .day {
-      width: 40px;
-      height: 40px;
+      width: 16px;
+      height: 16px;
       display: flex;
       align-items: center;
       justify-content: center;
       background-color: #e0e0e0;
-      border-radius: 6px;
+      border-radius: 3px;
       cursor: pointer;
       user-select: none;
       transition: background-color 0.3s;
+      font-size: 0.6rem;
     }
     .day.done {
       background-color: #4caf50;
@@ -151,9 +152,9 @@
   </section>
 
   <script>
-    const DAYS = 28; // 4 weeks
+    const DAYS = 365; // Full year
 
-    document.querySelectorAll('.habit-block').forEach((block, i) => {
+    document.querySelectorAll('.habit-block').forEach((block) => {
       const tracker = block.querySelector('.tracker');
       const habitKey = block.dataset.habit;
 
